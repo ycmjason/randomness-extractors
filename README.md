@@ -13,10 +13,22 @@ npm install --save randomness-extractors
 ### inner product extractor
 Reference: [https://people.eecs.berkeley.edu/~vazirani/pubs/2com.pdf](https://people.eecs.berkeley.edu/~vazirani/pubs/2com.pdf)
 
+In Node:
 ```javascript
 var Extractors = require('randomness-extractors');
 Extractors.innerProductExtractor([0, 0, 0, 1, 1], [1, 1, 1, 1, 0]) // 0;
+```
 
+Or in browser:
+```javascript
+...
+
+<script src="node_modules/randomness-extractors/dist/out.js"></script>
+<script>
+Extractors.innerProductExtractor([0, 0, 0, 1, 1], [1, 1, 1, 1, 0]) // 0;
+</script>
+
+...
 ```
 
 ## Test
