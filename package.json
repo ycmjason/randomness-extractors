@@ -2,9 +2,11 @@
   "name": "randomness-extractors",
   "version": "0.0.1",
   "description": "Extract (hopefully) almost uniform random bit from source(s) of biased and correlated bits.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --recursive"
+    "test": "mocha --recursive",
+    "prebuild": "mkdir dist 2> /dev/null; exit 0",
+    "build": "browserify ./lib/index.js -t [ babelify --presets [ env ] ] > ./dist/out.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,9 @@
   },
   "homepage": "https://github.com/ycmjason/randomness-extractors#readme",
   "devDependencies": {
+    "babel-preset-env": "^1.5.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.3.0",
     "mocha": "^3.4.1",
     "nist-randomness-test-suite": "0.0.6"
   },
