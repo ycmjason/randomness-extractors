@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "lodash.range": "^3.2.0",
+    "pad-left-simple": "^1.0.1",
     "rye": "0.0.3"
   }
 }

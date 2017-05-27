@@ -11,6 +11,7 @@ exports.InvalidBitError = new Error('Invalid Bit Error: unexpected non 0 or 1 bi
 
 var rye = require('rye');
 var range = require('lodash.range');
+var padLeft = require('pad-left-simple');
 
 var errors = require('../errors');
 
@@ -25,6 +26,8 @@ var GFInnerProduct = function GFInnerProduct(xs, ys, size) {
 };
 
 function innerProductExtractor(sources) {
+  var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
   // ref: Generating Quasi-Random Sequences from Two Communicating Slightly-random Sources. -- Umesh V. Vazirani
   // pre: 1. sources[0], sources[1] are array of bits
   //      2. sources[0] and sources[1] are of same length
@@ -32,12 +35,16 @@ function innerProductExtractor(sources) {
   if (!Array.isArray(sources[0]) || !Array.isArray(sources[1])) throw errors.InvalidTypeError;
   if (sources[0].length !== sources[1].length) throw errors.InvalidInputError;
 
+  sources.map(function (source) {
+    return padLeft(Number.parseInt(source.join(''), 2).toString(2), n).split('');
+  });
+
   return GFInnerProduct(sources[0], sources[1], 2);
 }
 
 module.exports = innerProductExtractor;
 
-},{"../errors":1,"lodash.range":4,"rye":5}],3:[function(require,module,exports){
+},{"../errors":1,"lodash.range":4,"pad-left-simple":5,"rye":6}],3:[function(require,module,exports){
 'use strict';
 
 var errors = require('./errors');
@@ -69,7 +76,11 @@ var extractorFactory = function extractorFactory(extractor) {
       return source.slice(0, shortestLength);
     });
 
-    return extractor(sources);
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    return extractor.apply(null, [sources].concat(args));
   };
 };
 
@@ -544,6 +555,14 @@ var range = createRange();
 module.exports = range;
 
 },{}],5:[function(require,module,exports){
+module.exports = function leftPad(s, size, ch){
+  if(s.length >= size) return s;
+  if(ch === undefined) ch = ' ';
+  var pad = new Array(size - s.length).fill(ch).join('');
+  return pad + s;
+}
+
+},{}],6:[function(require,module,exports){
 (function(global) {
 	// --------------------------------------------------------------------
 	//                         Auxiliary functions
