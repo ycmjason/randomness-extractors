@@ -14,12 +14,13 @@ describe('Randomness Extractor', function(){
       { input: ["00111",     "11110101001010"],         expect: '0' },
       { input: ["00101100",  "10110110"],        n: 3,  expect: '00' },
       { input: ["00101100000",  "10110110"],     n: 3,  expect: '00' },
+      { input: ["00101100",  "10110110000"],     n: 3,  expect: '00' },
       { input: ["11101011",  "001011000"],       n: 5,  expect: '011' },
     ];
-    specs.forEach(spec => spec.input = spec.input.map(b => b.split('')));
 
     specs.forEach(spec => {
-      it(`# innerProductExtractor(${spec.input}) === ${spec.expect}`, function(){
+      it(`# innerProductExtractor(${spec.input.join(', ')}) === ${spec.expect}`, function(){
+        spec.input = spec.input.map(b => b.split(''));
         assert.equal(Extractors.innerProductExtractor.call(null, spec.input, spec.n), spec.expect)
       });
     });
