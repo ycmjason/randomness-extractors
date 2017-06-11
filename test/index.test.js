@@ -25,4 +25,20 @@ describe('Randomness Extractor', function(){
       });
     });
   });
+
+  describe('vonNeumannsExtractor', function(){
+    var specs = [
+      { input: "00001", expect: '' },
+      { input: "011011", expect: '01' },
+      { input: "00101010", expect: '111' },
+    ];
+
+    specs.map(spec => spec.input = spec.input.split(''));
+
+    specs.forEach(spec => {
+      it(`# vonNeumannsExtractor(${spec.input.join(', ')}) === ${spec.expect}`, function(){
+        assert.equal(Extractors.vonNeumannsExtractor(spec.input), spec.expect)
+      });
+    });
+  });
 });
