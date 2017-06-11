@@ -17,7 +17,7 @@ Reference: J. Von Neumann, “Various techniques used in connection with random 
 var Extractors = require('randomness-extractors');
 
 var source = [0, 0, 1, 0, 1, 1, 0, 1];
-Extractors.innerProductExtractor([source]); // '10'
+Extractors.vonNeumannsExtractor([source]); // '10'
 ```
 
 ### Inner Product Extractor
