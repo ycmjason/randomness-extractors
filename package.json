@@ -1,6 +1,6 @@
 {
   "name": "randomness-extractors",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Extract (hopefully) almost uniform random bit from source(s) of biased and correlated bits.",
   "main": "lib/index.js",
   "scripts": {
@@ -31,6 +31,7 @@
     "nist-randomness-test-suite": "0.0.6"
   },
   "dependencies": {
+    "lodash.chunk": "^4.2.0",
     "lodash.range": "^3.2.0",
     "pad-left-simple": "^1.0.1",
     "rye": "0.0.3"
