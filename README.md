@@ -20,7 +20,7 @@ var source = [0, 0, 1, 0, 1, 1, 0, 1];
 Extractors.innerProductExtractor([source]); // '10'
 ```
 
-### inner product extractor
+### Inner Product Extractor
 Reference: [https://people.eecs.berkeley.edu/~vazirani/pubs/2com.pdf](https://people.eecs.berkeley.edu/~vazirani/pubs/2com.pdf)
 
 ```javascript
