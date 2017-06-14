@@ -23,6 +23,8 @@ Extractors.vonNeumannsExtractor([source]); // '10'
 ### Inner Product Extractor
 Reference: [https://people.eecs.berkeley.edu/~vazirani/pubs/2com.pdf](https://people.eecs.berkeley.edu/~vazirani/pubs/2com.pdf)
 
+You could do inner product of the two sources in GF(2) to extract a random bit. Optionally, you could also perform the inner product in GF(2^n), 1 <= n <= 13, to obtain n random bits.
+
 ```javascript
 var Extractors = require('randomness-extractors');
 Extractors.innerProductExtractor([[0, 0, 0, 1, 1], [1, 1, 1, 1, 0]]) // '0';
@@ -30,8 +32,8 @@ Extractors.innerProductExtractor([[0, 0, 0, 1, 1], [1, 1, 1, 1, 0]]) // '0';
 var source1 = [0, 0, 1, 0, 1, 1, 0, 0];
 var source2 = [1, 0, 1, 1, 0, 1, 1, 0];
 
-var size_of_extracted_bits = 3; // inner-product of GF(2^3)
-Extractors.innerProductExtractor([source1, source2], size_of_extracted_bits) // '001'
+var n = 3; // inner-product of GF(2^3)
+Extractors.innerProductExtractor([source1, source2], n) // '001'
 ```
 
 ## Browser usage
