@@ -29,8 +29,9 @@ Extractors.innerProductExtractor([[0, 0, 0, 1, 1], [1, 1, 1, 1, 0]]) // '0';
 
 var source1 = [0, 0, 1, 0, 1, 1, 0, 0];
 var source2 = [1, 0, 1, 1, 0, 1, 1, 0];
-var size_of_finite_field = 3;
-Extractors.innerProductExtractor([source1, source2], size_of_finite_field) // '00';
+
+var size_of_extracted_bits = 3; // inner-product of GF(2^3)
+Extractors.innerProductExtractor([source1, source2], size_of_extracted_bits) // '001'
 ```
 
 ## Browser usage
