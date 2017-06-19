@@ -6,9 +6,21 @@ var ring = new rye.PolynomRing(gf2);
 var coefs_toLatex = (coefs) => {
   return coefs.map((c, i) => {
     if(c == 0) return ''
-    if(i == 0) return c;
-    var xi = `x^{${i}}`;
-    if(c == 1) return xi;
+    var xi;
+    switch(i){
+      case 0:
+        xi = '';
+        break;
+      case 1:
+        xi = 'x';
+        break;
+      default:
+        xi = `x^{${i}}`;
+        break;
+    }
+    if(i > 0 && c == 1){
+      c = '';
+    }
     return c + xi;
   }).filter(c => c).reverse().join('+');
 }
@@ -31,6 +43,6 @@ var coefss = [
 
 console.log(['Degree', 'Coeffcicients', 'Polynomial'].join(' & '), '\\\\');
 coefss.forEach((coefs, i) => {
-  console.log([i+1, coefs.reverse().join(''), '$' + coefs_toLatex(coefs) + '$'].join(' & '), '\\\\');
+  console.log([i+1, coefs.slice(0).reverse().join(''), '$' + coefs_toLatex(coefs) + '$'].join(' & '), '\\\\');
 });
 
